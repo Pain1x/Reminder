@@ -1,0 +1,24 @@
+﻿<Window x:Class="Reminder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Reminder"
+        mc:Ignorable="d"
+        Title="Reminder" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="reminder.png">
+    <StackPanel Background="BlueViolet">
+        <StackPanel>
+            <DatePicker HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel>
+            <Label Content="Label" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBox HorizontalAlignment="Center" Text="TextBox"/>
+        </StackPanel>
+        <StackPanel>
+            <Button Content="Button" HorizontalAlignment="Left" />
+            <Button Content="Button" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
