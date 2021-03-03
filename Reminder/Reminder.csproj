@@ -116,7 +116,13 @@
     <PackageReference Include="Microsoft.Windows.SDK.Contracts">
       <Version>10.0.19041.1</Version>
     </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager">
+      <Version>5.0.0</Version>
+    </PackageReference>
     <PackageReference Include="System.ObjectModel">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Xml.XmlSerializer">
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>

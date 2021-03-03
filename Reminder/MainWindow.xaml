@@ -49,7 +49,7 @@
                 Pick a time when i have to remind you
             </Label>
         </StackPanel>
-        <!-- Time picker text boxes -->
+        <!-- DateTime picker -->
         <StackPanel>
             <WindowsFormsHost>
                 <wf:DateTimePicker x:Name="dateTimePicker" 
@@ -69,7 +69,7 @@
         </StackPanel>
         <!-- Central text box -->
         <StackPanel>
-            <TextBox x:Name="txtBoxRemindMe" 
+            <TextBox x:Name="txtBoxActs" 
                 HorizontalAlignment="Center" 
                 SpellCheck.IsEnabled="True" Height="180"
                 Width="500"
@@ -84,7 +84,7 @@
                 LostFocus="txtBoxRemindMe_LostFocus"
                 Text="Write here what I have to remind"/>
         </StackPanel>
-        <!-- Bottom buttons and reminder list -->
+        <!-- Bottom button and reminder list -->
         <Grid Margin="0 10 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Serialization;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
@@ -80,6 +82,7 @@ namespace Reminder
         {
             Application.Current.Shutdown();
         }
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             dateTimePicker.Width = 100;
@@ -87,23 +90,38 @@ namespace Reminder
             TODODataGrid.ItemsSource = TODOCollection;
         }
 
+        /// <summary>
+        /// Realization of placeholder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBoxRemindMe_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txtBoxRemindMe.Text == "Write here what I have to remind")
+            if (txtBoxActs.Text == "Write here what I have to remind")
             {
-                txtBoxRemindMe.Text = "";
+                txtBoxActs.Text = "";
             }
         }
 
+        /// <summary>
+        /// Realization of placeholder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBoxRemindMe_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBoxRemindMe.Text))
+            if (string.IsNullOrEmpty(txtBoxActs.Text))
             {
-                txtBoxRemindMe.Text = "Write here what I have to remind";
+                txtBoxActs.Text = "Write here what I have to remind";
             }
         }
     #endregion
         #region Private Methods
+        /// <summary>
+        /// Occurs when the time has passed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
     private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             DateTime currentTime = DateTime.Now;
@@ -133,20 +151,28 @@ namespace Reminder
                     Dispatcher.Invoke(upd, lblInfo, "I have reminded you everything you wanted");
             }
         }
+        /// <summary>
+        /// Creates the timer with the business to be done
+        /// </summary>
         private void RemindMe()
         {
             CreateNewTimer();
-            RemindElement element = new RemindElement(txtBoxRemindMe.Text, dateTimePicker.Value);
+            RemindElement element = new RemindElement(txtBoxActs.Text, dateTimePicker.Value);
             TODOCollection.Add(element);
+            SaveTheListOfActs(element);
         }
+        /// <summary>
+        /// Shows the Windows notification
+        /// </summary>
+        /// <param name="element"></param>
         private void Notify(RemindElement element)
         {
-            string title = element.Notification + " at " + element.Time.Hour + " " + element.Time.Minute;
+            string notification = element.Notification + " at " + element.Time.Hour + " " + element.Time.Minute;
 
             string toastXmlString =
             $@"<toast><visual>
             <binding template='ToastGeneric'>
-            <text>{title}</text>
+            <text>{notification}</text>
             </binding>
         </visual></toast>";
 
@@ -158,6 +184,9 @@ namespace Reminder
             var toastNotifier = ToastNotificationManager.CreateToastNotifier();
             toastNotifier.Show(toastNotification);
         }
+        /// <summary>
+        /// Creates a new instance of a timer for given business
+        /// </summary>
         private void CreateNewTimer()
         {
             timer = new Timer
@@ -166,6 +195,39 @@ namespace Reminder
             };
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
+        }
+
+        /// <summary>
+        /// Saves the list of acts in xml file
+        /// </summary>
+        /// <param name="element"></param>
+        private void SaveTheListOfActs(RemindElement element)
+        {
+            XmlSerializer formatter = new XmlSerializer(typeof(RemindElement));
+
+            string path = ResolvePath(@".\SerializedObjects\ListOfActs.xml");
+            using (FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fileStream, element);
+            }
+
+        }
+
+        /// <summary>
+        /// Gets the path of a file
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private string ResolvePath(string filePath)
+        {
+            if (Path.IsPathRooted(filePath))
+            {
+                return filePath;
+            }
+            else
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filePath);
+            }
         }
     }
     #endregion

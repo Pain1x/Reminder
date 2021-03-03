@@ -2,8 +2,13 @@
 
 namespace Reminder
 {
+    [Serializable]
     public class RemindElement 
     {
+        public RemindElement()
+        {
+
+        }
         public RemindElement(string notification, DateTime time)
         {
             Notification = notification;
