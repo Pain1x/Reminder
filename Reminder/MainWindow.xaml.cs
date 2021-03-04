@@ -7,8 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Serialization;
-using Windows.Data.Xml.Dom;
-using Windows.UI.Notifications;
 
 namespace Reminder
 {
@@ -159,7 +157,7 @@ namespace Reminder
             CreateNewTimer();
             RemindElement element = new RemindElement(txtBoxActs.Text, dateTimePicker.Value);
             TODOCollection.Add(element);
-            SaveTheListOfActs(element);
+            SaveTheListOfActs(TODOCollection);
         }
         /// <summary>
         /// Shows the Windows notification
@@ -167,22 +165,8 @@ namespace Reminder
         /// <param name="element"></param>
         private void Notify(RemindElement element)
         {
-            string notification = element.Notification + " at " + element.Time.Hour + " " + element.Time.Minute;
-
-            string toastXmlString =
-            $@"<toast><visual>
-            <binding template='ToastGeneric'>
-            <text>{notification}</text>
-            </binding>
-        </visual></toast>";
-
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(toastXmlString);
-
-            var toastNotification = new ToastNotification(xmlDoc);
-
-            var toastNotifier = ToastNotificationManager.CreateToastNotifier();
-            toastNotifier.Show(toastNotification);
+            var notification = element.Notification + " at " + element.Time.Hour + " " + element.Time.Minute;
+            MessageBox.Show(notification);
         }
         /// <summary>
         /// Creates a new instance of a timer for given business
@@ -201,16 +185,13 @@ namespace Reminder
         /// Saves the list of acts in xml file
         /// </summary>
         /// <param name="element"></param>
-        private void SaveTheListOfActs(RemindElement element)
+        private void SaveTheListOfActs(ObservableCollection<RemindElement> collection)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(RemindElement));
-
+            XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<RemindElement>));
             string path = ResolvePath(@".\SerializedObjects\ListOfActs.xml");
-            using (FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fileStream, element);
-            }
-
+            TextWriter txtWriter = new StreamWriter(path);
+            formatter.Serialize(txtWriter, collection);
+            txtWriter.Close();
         }
 
         /// <summary>
