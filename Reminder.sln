@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder", "Reminder\Reminder.csproj", "{875F23E9-CC1B-4025-9E5B-6162AC2FE06B}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{ECB6F80D-BB78-4316-B17E-8F04450193AF}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,16 +41,16 @@ Global
 		{875F23E9-CC1B-4025-9E5B-6162AC2FE06B}.Release|x64.Build.0 = Release|Any CPU
 		{875F23E9-CC1B-4025-9E5B-6162AC2FE06B}.Release|x86.ActiveCfg = Release|Any CPU
 		{875F23E9-CC1B-4025-9E5B-6162AC2FE06B}.Release|x86.Build.0 = Release|Any CPU
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Debug|Any CPU.ActiveCfg = Debug
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Debug|ARM.ActiveCfg = Debug
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Debug|ARM64.ActiveCfg = Debug
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Debug|x64.ActiveCfg = Debug
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Debug|x86.ActiveCfg = Debug
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Release|Any CPU.ActiveCfg = Release
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Release|ARM.ActiveCfg = Release
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Release|ARM64.ActiveCfg = Release
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Release|x64.ActiveCfg = Release
-		{ECB6F80D-BB78-4316-B17E-8F04450193AF}.Release|x86.ActiveCfg = Release
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Debug|Any CPU.ActiveCfg = Debug
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Debug|ARM.ActiveCfg = Debug
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Debug|ARM64.ActiveCfg = Debug
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Debug|x64.ActiveCfg = Debug
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Debug|x86.ActiveCfg = Debug
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Release|Any CPU.ActiveCfg = Release
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Release|ARM.ActiveCfg = Release
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Release|ARM64.ActiveCfg = Release
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Release|x64.ActiveCfg = Release
+		{726C350F-D97E-41E9-A96A-A5D5AFA09C4E}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

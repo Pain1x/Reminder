@@ -57,7 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="RemindElement.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\Deed.cs" />
+    <Compile Include="ViewModels\DeedViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,8 +115,8 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
-      <Version>10.0.19041.1</Version>
+    <PackageReference Include="Extended.Wpf.Toolkit">
+      <Version>4.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Configuration.ConfigurationManager">
       <Version>5.0.0</Version>
@@ -125,6 +127,16 @@
     <PackageReference Include="System.Xml.XmlSerializer">
       <Version>4.3.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Minimize.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
