@@ -13,8 +13,15 @@ using System.Xml.Serialization;
 
 namespace Reminder.ViewModels
 {
+    /// <summary>
+    /// View model of deed object
+    /// </summary>
     class DeedViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Declaration of delegate to pass it to Dispatcher thread
+        /// </summary>
+        /// <param name="collection">Collection to change</param>
         delegate void UpdateCollection(ObservableCollection<Deed> collection);
         /// <summary>
         /// Implementation of INotifyPropertyChanged interface
@@ -41,6 +48,9 @@ namespace Reminder.ViewModels
             dispatcher = Dispatcher.CurrentDispatcher;
         }
         #region Public Properties
+        /// <summary>
+        /// List of things to do
+        /// </summary>
         public ObservableCollection<Deed> Affairs { get; set; }
         /// <summary>
         /// Saves the notification message
@@ -84,16 +94,23 @@ namespace Reminder.ViewModels
                 return addCommand ??
                   (addCommand = new RelayCommand(obj =>
                   {
-                      CreateNewTimer();
-                      Deed element = new Deed
+                      if (Time > DateTime.Now)
                       {
-                          Notification = Notification,
-                          Time = Time
-                  };                      
-                      Affairs.Add(element);
-                      SaveTheListOfActs(Affairs);
+                          CreateNewTimer();
+                          Deed element = new Deed
+                          {
+                              Notification = Notification,
+                              Time = Time
+                          };
+                          Affairs.Add(element);
+                          Time = DateTime.Now;
+                          SaveTheListOfActs(Affairs);
+                      }
+                      else
+                      {
+                          MessageBox.Show("Wrong time");
+                      }
                   }));
-
             }
         }
         #endregion

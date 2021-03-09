@@ -43,7 +43,6 @@ namespace Reminder
         {
             Application.Current.Shutdown();
         }
-
         #endregion
     }
 }
